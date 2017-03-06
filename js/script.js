@@ -15,12 +15,13 @@ function initWeatherAPI() {
         console.log(data);
         console.log(data.weather[0].main);
         console.log(data.weather[0].main);
-        temp = ((data.main.temp * 9)/5) + 32 ;
-        $( "#forecast" ).html( "<p>Main:"+data.weather[0].main
-        +"</p><p>Description:"
-        +"<img src ='http://openweathermap.org/img/w/"+data.weather[0].icon+".png'>"
+        temp = Math.trunc(((data.main.temp * 9)/5) + 32);
+
+        $( "#forecast" ).html( "<div id='title'>"+data.name+"<p>"+data.weather[0].main
+        +"</p></div><div id='temp_display'>"
+        +"<img id='icon' src ='http://openweathermap.org/img/w/"+data.weather[0].icon+".png'><div id='temp'>"+temp+"&deg;</div></div><div id='temp-details'><p id='temp-description'>"
         +data.weather[0].description+"</p>"
-        +"<p>Temperature:"+temp+"</p>");
+        +"<p>Humidity:"+data.main.humidity+"%</p></div>");
 
       },
       error: function() {
